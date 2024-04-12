@@ -1,4 +1,5 @@
 <?php
+include_once "Moto.php";
 class Venta
 {
     /* Atributos */
@@ -58,6 +59,27 @@ class Venta
     public function setPrecioFinal($precioFinal)
     {
         $this->precioFinal = $precioFinal;
+    }
+    /* Metodo incorporarMoto */
+    public function incorporarMoto($objMoto){
+/* inicializamos una var booleana que retornara para avisar si la venta fue posible o no */
+$venta = false;
+/* Verificamos que la venta sea posible (que este activa) */
+if($objMoto->getActiva()){
+    $venta = true;
+    $precioMoto = $objMoto->darPrecioVenta();
+    /* almacenamos el arreglo en un arreglo axuiliar */
+    $arregloMotos = $this->getColObjMoto();
+    /* modificamos el arreglo auxiliar añadiendo el objeto que entra por parametro */
+    $arregloMotos[]= $objMoto;
+    /* modificamos el arreglo de motos de la clase enviando por parmetro el arreglo con el objeto añadido */
+    $this->setColObjMoto($arregloMotos);
+    /* Actualizamos tambien la variable de precio final */
+   $this->setPrecioFinal($this->getPrecioFinal() + $precioMoto);
+}
+/* Si la venta se pudo concretar se devolvera true para confirmarlo */
+return $venta;
+
     }
     /* Metodo ToString */
     public function __toString()
