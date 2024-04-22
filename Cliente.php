@@ -49,10 +49,21 @@ class Cliente{
     public function setNumDocumento($numDoc){
         $this->numDoc = $numDoc;
     }
+    /* Metodo booleano a string */
+    public function booleanoATexto($varbooleana){
+        if($varbooleana){
+            $texto = "Si";
+        }
+        else{
+            $texto = "No";
+        }
+        return $texto;
+
+    }
     /* Metodo ToString */
     public function __toString()
     {
-        return "\n Nombre Cliente : ".$this->getNombreCliente()." \n Apellido Cliente: ".$this->getApellidoCliente()." \n Dado de baja: ".$this->getDadoDeBaja()." \n Tipo de Documento: ".$this->getTipoDoc()." \n Numero de Documento: ".$this->getNumDoc()." \n";
+        return "\n Nombre Cliente : ".$this->getNombreCliente()." \n Apellido Cliente: ".$this->getApellidoCliente()." \n Dado de baja: ".$this->booleanoATexto($this->getDadoDeBaja())." \n Tipo de Documento: ".$this->getTipoDoc()." \n Numero de Documento: ".$this->getNumDoc()." \n";
     }
 
 
